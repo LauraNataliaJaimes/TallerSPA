@@ -1,13 +1,21 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const personasController_1 = __importDefault(require("../controllers/personasController"));
 class PersonasRoutes {
     constructor() {
         this.router = express_1.Router();
         this.config();
     }
     config() {
-        this.router.get('/', (req, res) => res.send('this muchhh')); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
+        this.router.get('/', personasController_1.default.list); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
+        this.router.get('/:id', personasController_1.default.getOne);
+        this.router.post('/', personasController_1.default.create);
+        this.router.put('/:id', personasController_1.default.update);
+        this.router.delete('/:id', personasController_1.default.delete);
     }
 }
 const personasRoutes = new PersonasRoutes();

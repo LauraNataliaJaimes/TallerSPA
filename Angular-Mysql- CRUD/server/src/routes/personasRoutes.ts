@@ -1,5 +1,7 @@
 import { Router } from 'express'
 
+import personasController from '../controllers/personasController'
+
 class PersonasRoutes {
 
     public router: Router = Router();
@@ -9,7 +11,11 @@ class PersonasRoutes {
     }
 
     config(): void {
-        this.router.get('/', (req, res) => res.send('this muchhh')); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
+        this.router.get('/', personasController.list); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
+        this.router.get('/:id', personasController.getOne);
+        this.router.post('/', personasController.create);
+        this.router.put('/:id', personasController.update);
+        this.router.delete('/:id', personasController.delete);
     }
 }
 

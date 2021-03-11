@@ -1,4 +1,6 @@
-import { Router } from 'express'
+import { Router } from 'express';
+
+import { indexController } from '../controllers/indexController';
 
 class IndexRoutes {
 
@@ -9,7 +11,7 @@ class IndexRoutes {
     }
 
     config(): void {
-        this.router.get('/', (req, res) => res.send('I wuv u')); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
+        this.router.get('/', indexController.index); //Especifico la Ruta '/' y en res.send lo que quiero mostrar
     }
 }
 
